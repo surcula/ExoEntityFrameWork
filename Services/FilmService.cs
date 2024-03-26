@@ -1,6 +1,7 @@
 ﻿using ExoEntityFrameWork.Contexts;
 using ExoEntityFrameWork.Entities;
 using Microsoft.EntityFrameworkCore;
+using RepositoriesExoEntityFrameWork.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ExoEntityFrameWork.Repositories
 {
-    public class FilmRepository
+    public class FilmService : ICRUDRepository<Film,int>
     {
 
         /// <summary>
@@ -90,7 +91,11 @@ namespace ExoEntityFrameWork.Repositories
                 return existingFilm;
             }
         }
-
+        /// <summary>
+        /// Supprime le film selon l'id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <exception cref="Exception"></exception>
         public void Delete(int id)
         {
             using (FilmDbContext context = new FilmDbContext())
@@ -102,6 +107,19 @@ namespace ExoEntityFrameWork.Repositories
                 }
                 context.Remove(existingFilm);
                 context.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Retourne un film avec un Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Film GetById(int id)
+        {
+            using (FilmDbContext context = new FilmDbContext())
+            {
+                return context.Films.FirstOrDefault(f => f.Id == id);
             }
         }
     }

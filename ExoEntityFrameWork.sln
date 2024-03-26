@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExoEntityFrameWork", "ExoEntityFrameWork.csproj", "{B2BA26E3-935D-47DA-8244-391F7F0A2217}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoriesExoEntityFrameWork", "..\RepositoriesExoEntityFrameWork\RepositoriesExoEntityFrameWork.csproj", "{0CA0E9A0-8A9E-4CC6-A1D6-B7024310A1E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B2BA26E3-935D-47DA-8244-391F7F0A2217}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2BA26E3-935D-47DA-8244-391F7F0A2217}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2BA26E3-935D-47DA-8244-391F7F0A2217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CA0E9A0-8A9E-4CC6-A1D6-B7024310A1E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CA0E9A0-8A9E-4CC6-A1D6-B7024310A1E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CA0E9A0-8A9E-4CC6-A1D6-B7024310A1E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CA0E9A0-8A9E-4CC6-A1D6-B7024310A1E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
