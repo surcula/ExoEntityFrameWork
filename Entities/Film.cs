@@ -13,22 +13,22 @@ namespace ExoEntityFrameWork.Entities
 {
     public class Film 
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        [Column(TypeName = "varchar(100)")]
-        [NotNull]
-        public string Title { get; set; }
-        [NotNull]
-        [Range(1976, int.MaxValue, ErrorMessage = "L'année de production doit être supérieure à 1975")]
-        [Column(TypeName = "varchar(100)")]
-        public int AnneeSortie { get; set; }
-        [NotNull]
-        [Column(TypeName = "varchar(100)")]
-        public string Acteur { get; set; }
-        [NotNull]
-        [Column(TypeName = "varchar(100)")]
-        public string Genre { get; set; }
+   
 
+        public int Id { get; set; }
+
+        public string Title { get; set; }
+     
+        public int AnneeSortie { get; set; }
+
+        public string Acteur { get; set; }
+       
+        public Genre Genre { get; set; }
+        public string Realisateur { get; set; }
+
+        public Film()
+        {
+            
+        }
     }
 }

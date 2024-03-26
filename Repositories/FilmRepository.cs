@@ -18,7 +18,7 @@ namespace ExoEntityFrameWork.Repositories
         /// <returns></returns>
         public IEnumerable<Film> GetAll()
         {
-            using(DemoContext context = new DemoContext())
+            using(FilmDbContext context = new FilmDbContext())
             {
                 return context.Films;
             }
@@ -31,7 +31,7 @@ namespace ExoEntityFrameWork.Repositories
         /// <returns></returns>
         public Film GetOne(Func<Film,bool> predicate)
         {
-            using (DemoContext context = new DemoContext())
+            using (FilmDbContext context = new FilmDbContext())
             {
                 return context.Films.FirstOrDefault(predicate);
             }
@@ -44,7 +44,7 @@ namespace ExoEntityFrameWork.Repositories
         /// <returns></returns>
         public IEnumerable<Film> GetMany(Func<Film, bool> predicate)
         {
-            using (DemoContext context = new DemoContext())
+            using (FilmDbContext context = new FilmDbContext())
             {
                 return context.Films.Where(predicate);
             }
@@ -57,7 +57,7 @@ namespace ExoEntityFrameWork.Repositories
         /// <returns></returns>
         public Film Insert(Film film)
         {
-            using (DemoContext context = new DemoContext())
+            using (FilmDbContext context = new FilmDbContext())
             {
                 Film addFilm = context.Films.Add(film).Entity;
                 context.SaveChanges();
@@ -74,7 +74,7 @@ namespace ExoEntityFrameWork.Repositories
         /// <exception cref="Exception"></exception>
         public Film Update(int id, Film film)
         {
-            using (DemoContext context = new DemoContext())
+            using (FilmDbContext context = new FilmDbContext())
             {
                 Film existingFilm = context.Films.FirstOrDefault(f => f.Id == id);
                 if(existingFilm is null)
@@ -85,6 +85,7 @@ namespace ExoEntityFrameWork.Repositories
                 existingFilm.AnneeSortie = film.AnneeSortie;
                 existingFilm.Acteur = film.Acteur;
                 existingFilm.Genre = film.Genre;
+                existingFilm.Realisateur = film.Realisateur;
                 context.SaveChanges();
                 return existingFilm;
             }
@@ -92,7 +93,7 @@ namespace ExoEntityFrameWork.Repositories
 
         public void Delete(int id)
         {
-            using (DemoContext context = new DemoContext())
+            using (FilmDbContext context = new FilmDbContext())
             {
                 Film? existingFilm = context.Films.FirstOrDefault(f => f.Id == id);
                 if (existingFilm is null)

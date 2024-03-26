@@ -10,9 +10,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExoEntityFrameWork.Migrations
 {
-    [DbContext(typeof(DemoContext))]
-    [Migration("20240325190941_exoEFCore")]
-    partial class exoEFCore
+    [DbContext(typeof(FilmDbContext))]
+    [Migration("20240326101458_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,28 +34,33 @@ namespace ExoEntityFrameWork.Migrations
 
                     b.Property<string>("Acteur")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("AnneeSortie")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
+                    b.Property<int>("AnneeSortie")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Genre")
+                    b.Property<int>("Genre")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Realisateur")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Title")
                         .IsUnique();
 
-                    b.ToTable("films", t =>
+                    b.ToTable("Films", null, t =>
                         {
-                            t.HasCheckConstraint("CK_AnneeSortie", "AnneeSortie > 1975");
+                            t.HasCheckConstraint("CK_Films_AnneeSortie", "AnneeSortie > 1975");
                         });
                 });
 #pragma warning restore 612, 618
