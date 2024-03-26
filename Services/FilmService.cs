@@ -95,19 +95,30 @@ namespace ExoEntityFrameWork.Repositories
         /// Supprime le film selon l'id
         /// </summary>
         /// <param name="id"></param>
-        /// <exception cref="Exception"></exception>
+        /// <exception cref="DbUpdateException"></exception>
+        /// <exception cref="DbUpdateConcurrencyException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void Delete(int id)
         {
-            using (FilmDbContext context = new FilmDbContext())
+            try 
             {
-                Film? existingFilm = context.Films.FirstOrDefault(f => f.Id == id);
-                if (existingFilm is null)
+                using (FilmDbContext context = new FilmDbContext())
                 {
-                    throw new Exception("Désolé le film n'existe pas");
+                    Film? existingFilm = context.Films.SingleOrDefault(f => f.Id == id);
+                    if (existingFilm is null)
+                    {
+                        throw new ArgumentOutOfRangeException(nameof(id));
+                    }
+                    context.Remove(existingFilm);
+                    context.SaveChanges();
                 }
-                context.Remove(existingFilm);
-                context.SaveChanges();
+            }catch (Exception ex)
+            {
+                throw ex;
             }
+            
         }
 
         /// <summary>
